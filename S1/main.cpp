@@ -94,6 +94,10 @@ using programma::somma; // importa somma dal namespace programma a quello global
 namespace ma = math::arithmetics; // crea un alias per il namespace
 // da questo punto posso usare ma::... invece di math::arithmetics::...
 
+auto miasomma(int i, int j) {
+    return i+j;
+}
+
 int main()
 {
     // cout rappresenta lo standard output (simile a System.out di Java)
@@ -127,5 +131,32 @@ int main()
 
     std::string msg2 = "Ciao";
 
+    // Inizializzazione di una variabile
+    int i = 3; // stile C
+    int j(8); // stile C++ pre-11
+    int k{5}; // da C++11
+
+    int i2 = 3.14;
+    int j2(3.14);
+    //int k2{3.14};
+
+    // Attenzione alle differenze con Java
+    std::string m; // Istanzia un oggetto di tipo string sullo stack
+    std::string *m2{new std::string}; // Istanzia un oggetto di tipo string sullo heap
+
+    // std::string n{new std::string}; // Errore!
+
+    auto pi{3.14};
+    auto messaggio{"hello world"};
+    m = "ciaò";
+    std::cout << m << " -> " << m.size() << '\n';
+    //std::cout << m[0] << m[1] << m[2] << m[3] << m[4] << '\n';
+    const char* cm{m.c_str()}; // Posso "estrarre" una stringa C da string
+    // con auto il tipo della variabile viene determinato automaticamente
+    auto l{7};
+    auto q{8};
+    auto z{miasomma(l,q)};
+
+    delete m2;
     return 0;
 }
