@@ -3,3 +3,4 @@ cmake_minimum_required(VERSION 3.5)
 project(corsocpp_pap_2023 LANGUAGES CXX)
 
 add_subdirectory(S1)
+add_subdirectory(S2)
