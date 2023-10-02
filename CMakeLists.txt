@@ -4,3 +4,4 @@ project(corsocpp_pap_2023 LANGUAGES CXX)
 
 add_subdirectory(S1)
 add_subdirectory(S2)
+add_subdirectory(S3)
