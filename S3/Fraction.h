@@ -11,12 +11,23 @@ private:
 public:
     Fraction(int num, int den);
     Fraction();
-    Fraction(int num);
-    void print();
-    int getDenominator();
-    int getNumerator();
+    /*explicit*/ Fraction(int num);
+    void print() const;
+    int getDenominator() const;
+    int getNumerator() const;
     void setDenominator(int den);
     void setNumerator(int num);
+
+    // Overloading degli operatori
+    Fraction& operator += (const Fraction& f);
+    Fraction& operator -= (const Fraction& f);
+
+    Fraction operator - (const Fraction& f) const;
+
+    // Operatore di conversione
+    operator double () const {
+        return (double) numerator / denominator;
+    };
 protected:
     // ..
 };
