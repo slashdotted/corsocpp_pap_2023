@@ -6,11 +6,6 @@ Fraction operator+(Fraction a, const Fraction& b)
     return a += b;
 }
 
-std::ostream& operator<<(std::ostream& o, const Fraction& f) {
-    o << f.getNumerator() << "/" << f.getDenominator();
-    return o;
-}
-
 
 /*Fraction operator+(const Fraction& a, const Fraction& b)
 {
@@ -38,5 +33,5 @@ int main() {
 
     std::cout << f;
     g = f + 5; // g = f.operator+(5); -> f.operator+(Fraction{5});
-    //g = 5 + f; // g = 5.operator+(f);
+    g = 5 + f; // g = 5.operator+(f);
 }

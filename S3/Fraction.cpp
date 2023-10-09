@@ -1,6 +1,12 @@
 #include "Fraction.h"
 #include <iostream>
 
+std::ostream& operator<<(std::ostream& o, const Fraction& f) {
+    o << f.getNumerator() << "/" << f.getDenominator();
+    return o;
+}
+
+
 Fraction::Fraction(int num, int den)
     : numerator{num}, denominator{den == 0 ? 1 : den}  // init-list
 {

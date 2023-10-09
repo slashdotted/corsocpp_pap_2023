@@ -1,5 +1,6 @@
 #ifndef FRACTION_H
 #define FRACTION_H
+#include <iostream>
 
 // Posso dichiarare una classe anche utilizzando la parola
 // chiave "class"
@@ -25,11 +26,13 @@ public:
     Fraction operator - (const Fraction& f) const;
 
     // Operatore di conversione
-    operator double () const {
+    /*operator double () const {
         return (double) numerator / denominator;
-    };
+    };*/
 protected:
     // ..
 };
+
+std::ostream& operator<<(std::ostream& o, const Fraction& f);
 
 #endif // FRAZIONE_H
