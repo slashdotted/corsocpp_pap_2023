@@ -124,6 +124,52 @@ private:
     Foo* ptr;
 };
 
+
+struct MySharedFoo {
+    MySharedFoo(Foo* p) : ptr{p},  counter{new int{1}} {}
+
+    MySharedFoo(const MySharedFoo& o) : ptr{o.ptr}, counter{o.counter} {
+        ++(*counter);
+    }
+
+    MySharedFoo& operator=(const MySharedFoo& o) {
+        decrement();
+        ptr = o.ptr;
+        counter = o.counter;
+        ++(*counter);
+        return *this;
+    }
+
+
+    ~MySharedFoo() {
+        decrement();
+    }
+
+    Foo& operator*() const{
+        return *ptr;
+    }
+
+    Foo* get() const {
+        return ptr;
+    }
+
+    int use_count() const  {
+        return *counter;
+    }
+
+private:
+    void decrement() {
+        --(*counter);
+        if (*counter == 0) {
+            delete ptr;
+            delete counter;
+        }
+    }
+
+    Foo* ptr;
+    int* counter;
+};
+
 void fun(std::unique_ptr<Foo> x) {
 
 }
@@ -182,7 +228,8 @@ void esempio_shared_ptr() {
     v.push_back(p6);
 }
 
-void esempio_exceptions() {
+// Video su noexcept: https://www.youtube.com/watch?v=AG_63_edgUg
+void esempio_exceptions() noexcept {
     try {
         Foo s{"Computer"};
         //auto x{new Foo{"Casa"}};
@@ -191,7 +238,7 @@ void esempio_exceptions() {
         //delete x;
     } catch(const char* e) {
         std::cout << "Eccezione: " << e << '\n';
-        throw; // Rilancio eccezione
+        //throw; // Rilancio eccezione
     } catch(int e) {
         std::cout << "Eccezione: " << e << '\n';
     } catch(...) { // Tutti gli altri tipi
@@ -210,6 +257,20 @@ void esempio_exceptions() {
     }
 }
 
+void fun(MySharedFoo k) {
+    std::cout << "In fun: counter = " << k.use_count() << '\n';
+}
+
+void esempio_mysharedptr() {
+    MySharedFoo p{new Foo("Aldo")};
+    MySharedFoo p2{new Foo{"Giovanni"}};
+    std::cout << "Before fun: counter = " << p.use_count() << '\n';
+    fun(p);
+    std::cout << "After fun: counter = " << p.use_count() << '\n';
+    p2 = p;
+    std::cout << "After assign: counter = " << p.use_count() << '\n';
+}
+
 int main() {
     esempio_vector();
     esempio_list();
@@ -218,4 +279,5 @@ int main() {
     esempio_unique_ptr();
     esempio_shared_ptr();
     esempio_exceptions();
+    esempio_mysharedptr();
 }
