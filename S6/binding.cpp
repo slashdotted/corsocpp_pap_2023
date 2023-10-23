@@ -20,7 +20,7 @@ public:
 class Derived : public Base
 {
 public:
-    void bar()
+    void bar() override
     {
         cout << "\tDerived::bar()" << endl;
         cout << "\tCalling baz()" << endl;

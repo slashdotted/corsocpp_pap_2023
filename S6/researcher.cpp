@@ -6,7 +6,8 @@ using std::endl;
 using std::string;
 
 Researcher::Researcher(string name, string institute, int nr, string researcharea)
-    : m_researcharea{researcharea}
+    : Employee{name, institute, nr}, // equivalente di "super" in Java
+    m_researcharea{researcharea}
 {
     cout << "Costructing Researcher" << endl;
 }

@@ -5,8 +5,10 @@ using std::cout;
 using std::endl;
 using std::string;
 
-Lecturer::Lecturer(string name, string institute, int nr, string studies, string course)
-    : m_studies{studies}
+Lecturer::Lecturer(string name, string institute, int nr,
+                   string studies, string course)
+    : Employee{name, institute, nr}, // equivalente di "super" in Java
+    m_studies{studies}
     , m_course{course}
 {
     cout << "Costructing Lecturer" << endl;

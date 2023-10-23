@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 
 class Employee
@@ -8,7 +9,7 @@ public:
     std::string name() const;
     std::string institute() const;
     int employeenr() const;
-    std::string classname() const;
+    virtual std::string classname() const;
 
 protected:
     std::string m_name;
