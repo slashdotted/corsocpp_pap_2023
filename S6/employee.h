@@ -1,12 +1,13 @@
 #pragma once
 #include <string>
+#include "abstractemployee.h"
 
-class Employee
+class Employee : public AbstractEmployee
 {
 public:
     Employee(std::string name, std::string institute, int nr);
     ~Employee();
-    std::string name() const;
+    std::string name() const override;
     std::string institute() const;
     int employeenr() const;
     virtual std::string classname() const;
