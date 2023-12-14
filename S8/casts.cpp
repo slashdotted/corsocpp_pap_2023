@@ -61,6 +61,11 @@ int main() {
     LecturerResearcher* prt_lr_giovanni = dynamic_cast<LecturerResearcher*>(&giovanni);
     std::cout << "prt_lr_giovanni=" << prt_lr_giovanni << '\n';
 
+    // if ("giovanni instanceof LecturerResearcher")
+    if (dynamic_cast<LecturerResearcher*>(&giovanni)) {
+
+    }
+
     // Upcast da researcher a employee
     Employee* aldo_empl = dynamic_cast<Employee*>(&aldo);
     // Il downcast attraverso una derivazione virtual è possibile

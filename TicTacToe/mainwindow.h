@@ -19,11 +19,14 @@ public:
 private slots:
     void cellaCliccata();
     void nuovaPartita();
+    void finePartita(const QString& vincitore);
 
 signals:
     void fineTurno(QString prossimoGiocatore);
+    void vittoria(QString giocatore);
 
 private:
+    bool verificaVittoria() const;
     Ui::MainWindow *ui;
     QPushButton *cella[3][3];
     QString giocatore{"X"};
