@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/icone">
+        <file alias="icona">application-vnd.wordperfect.png</file>
+    </qresource>
+</RCC>
